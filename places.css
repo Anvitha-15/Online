@@ -1,0 +1,71 @@
+/*---------------Header CSS---------------*/
+#header {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(images/book3.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.user-box {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+
+
+.user-box h1 {
+    color: #fff;
+    font-weight: bold;
+    margin: 15px;
+    letter-spacing: 7px;
+}
+
+.user-box p {
+    color: #fff;
+}
+
+/* search bar */
+
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #4dd0e1;
+    box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+.tablealign,
+tr:nth-child(even) {
+    background-color: rgba(9, 0, 0, 0.553)
+}
+
+/* .tablealign,
+th {
+    background-color: #10A5AB;
+    color: rgba(9, 0, 0, 0.553);
+} */
+
+.tablealign,
+td,
+th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.tablealign {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablealign,
+th,
+td {
+    text-align: left;
+    padding: 15px;
+}
+
+.tablealign {
+    color: #F5F5F5 !important;
+    size: 200px !important;
+    ;
+}

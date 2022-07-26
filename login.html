@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title>Online Tutors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <br>
+    <br>
+    <div class="cont">
+        <div class="form sign-in">
+            <h2>Welcome</h2>
+            <label>
+                <span>Email</span>
+                <input type="email" id="username_signin" />
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" id="pass_signin" />
+            </label>
+            <p class="forgot-pass">Forgot password?</p>
+            <button type="button" onclick="signin(username_signin.value, pass_signin.value)" class="submit">Sign
+                In</button>
+
+
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+
+                    <h3>Don't have an account? Please Sign up!<h3>
+                </div>
+                <div class="img__text m--in">
+
+                    <h3>If you already has an account, just sign in.<h3>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">Sign Up</span>
+                    <span class="m--in">Sign In</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <h2>Create your Account</h2>
+                <label>
+                    <span>Name</span>
+                    <input type="text" id="fullname" />
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email" id="username" />
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" id="pass" />
+                </label>
+                <button type="button" onclick="signup(username.value, pass.value, fullname.value)" class="submit">Sign
+                    Up</button>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        function signup(un, pass, namevar) {
+            axios.post('http://localhost:4500/resto/signup', {
+                    username: un,
+                    password: pass,
+                    name: namevar,
+                    type: "student"
+                })
+                .then(response => {
+                    const data = response.data;
+                    if (data === "success") {
+                        alert('Success!');
+
+                        window.location =
+                            "login.html";
+
+                    } else {
+                        alert("Failure");
+                    }
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+
+        function signin(un, pass) {
+            axios.post('http://localhost:4500/resto/signin', {
+                    username: un,
+                    password: pass,
+                    type: "student"
+                })
+                .then(response => {
+                    const data = response.data;
+                    if (data.message === "success") {
+                        alert('Successfully logged in as ' + un + '!');
+                        localStorage["username_value"] = un;
+                        window.location =
+                            "index.html";
+
+                    } else {
+                        alert("Failure");
+                    }
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+        document.querySelector('.img__btn').addEventListener('click', function () {
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+    </script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

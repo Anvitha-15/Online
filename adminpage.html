@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <title>Job Website Template - Easy Tutorials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="adminpage.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+    <!--  -->
+    <section id="header">
+        <div class="container">
+            <div class="user-box">
+                <a class="btn btn-secondary" href="places.htm">Add Subject</a>
+                <button type="button" onclick="adminLoadBookings()" class="submit btn btn-secondary">View Notifications</button>
+                <!-- <h2>the table is: </h2> -->
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="tablealign" id="search-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        function acceptBook(id, name, subject, username, status) {
+            axios.post('http://localhost:4500/resto/acceptBook', {
+                    id: id,
+                    name: name,
+                    subject: subject,
+                    username: username,
+                    status: status
+                })
+                .then(response => {
+                    const data = response.data;
+                    if (data === "success") {
+                        alert('Successfully Accepted!');
+                        adminLoadBookings();
+                    } else {
+                        alert("Failure in acceptance");
+                    }
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+
+        function rejectBook(id, name, subject, username, status) {
+            axios.post('http://localhost:4500/resto/rejectBook', {
+                    id: id,
+                    name: name,
+                    subject: subject,
+                    username: username,
+                    status: status
+                })
+                .then(response => {
+                    const data = response.data;
+                    if (data === "success") {
+                        alert('Successfully Rejected!');
+                        adminLoadBookings();
+                    } else {
+                        alert("Failure in rejection");
+                    }
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+
+        function adminLoadBookings() {
+            axios.post('http://localhost:4500/resto/adminLoadBookings', {
+                    username: localStorage["adminname_value"]
+                })
+                .then(response => {
+                    const data = response.data;
+                    let tag = "";
+                    tag += '<table  class="tablealign">';
+                    tag += "<tr>";
+                    tag += "<th>ID</th><th>Name</th><th>Subject</th><th>Username</th><th>Status</th>";
+                    tag += "</tr>";
+                    data.forEach((element) => {
+                        tag += "<tr>";
+                        tag += "<td>" + element.id + "</td>";
+                        tag += "<td>" + element.name + "</td>";
+                        tag += "<td>" + element.subject + "</td>";
+                        tag += "<td>" + element.username + "</td>";
+                        tag += "<td>" + element.status + "</td>";
+                        tag += "<td>";
+                        tag +=
+                            `<button type="button" onclick="acceptBook('${element.id}','${element.name}','${element.subject}','${element.username}','${element.status}')" class="submit">ACCEPT</button>`;
+                        tag += "</td>";
+                        tag += "<td>";
+                        tag +=
+                            `<button type="button" onclick="rejectBook('${element.id}','${element.name}','${element.subject}','${element.username}','${element.status}')" class="submit">REJECT</button>`;
+                        tag += "</td>";
+                        tag += "</tr>";
+                    });
+                    tag += "</table>";
+                    console.log(tag);
+                    document.getElementById("search-result").innerHTML = tag;
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+        document.querySelector('.img__btn').addEventListener('click', function () {
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+    </script>
+</body>
+
+</html>

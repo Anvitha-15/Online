@@ -1,0 +1,162 @@
+<html>
+
+<head>
+  <title>Online Tutors</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/carousel.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+  <!------------------------------------ Navbar ---------------------------->
+
+  <div class="container-fluid" id="container">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light center">
+      <a class="navbar-brand" href="#">Online Tutors.com</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--  -->
+  </div>
+  </nav>
+
+  <!------------------------------------ header ---------------------------->
+
+  <div class="text-center parallax pt-md-5" id="header">
+    <div class="pt-5 pb-5">
+      <div class="user-box">
+        <h1>Welcome To Online Tutors</h1>
+        <!-- Search form -->
+        <form class="form-inline active-purple-4">
+          <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search"
+            id="search_home">
+          <i class="glyphicon glyphicon-search"></i>
+          <button type="button" onclick="search(search_home.value)" class="submit btn btn-secondary">Search</button>
+          <button type="button" onclick="loadBookings()" class="submit btn btn-secondary">View Booked Tutors</button>
+          <!-- <h2>the table is: </h2> -->
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="tablealign" id="search-result"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  
+  
+
+
+
+
+  <!------------------------------------ end ---------------------------------------------------------------------->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+    integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+  </script>
+  <script src="https://use.fontawesome.com/fb72a67e96.js"></script>
+  <script src="js/app.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript">
+    function search(search) {
+      axios.post('http://localhost:4500/resto/search', {
+          search: search
+        })
+        .then(response => {
+          const data = response.data;
+          let tag = "";
+          tag += '<table class="tablealign">';
+          tag += "<tr>";
+          tag += "<th>ID</th><th>Name</th><th>Suject</th>";
+          tag += "</tr>";
+          let i = 0;
+          data.forEach((element) => {
+            tag += "<tr>";
+            tag += "<td>" + element.id + "</td>";
+            tag += "<td>" + element.name + "</td>";
+            tag += "<td>" + element.subject + "</td>";
+            tag += "<td>";
+            tag +=
+              `<button type="button" onclick="book('${element.id}', '${element.name}','${element.subject}', '${localStorage["username_value"]}')" class="submit">BOOK</button>`;
+            tag += "</td>";
+            tag += "</tr>";
+            i += 1;
+          });
+          tag += "</table>";
+          console.log(tag);
+          document.getElementById("search-result").innerHTML = tag;
+        })
+        .catch(error => console.error('On create student error', error));
+    }
+
+    function book(id, name, subject, username) {
+      axios.post('http://localhost:4500/resto/book', {
+          id: id,
+          name: name,
+          subject: subject,
+          username: username
+        })
+        .then(response => {
+          const data = response.data;
+          if (data === "success") {
+            alert('Successfully Booked!');
+            window.location =
+              "index.html";
+
+          } else {
+            alert("Failure in Booking");
+          }
+        })
+        .catch(error => console.error('On create student error', error));
+    }
+
+    function loadBookings() {
+      axios.post('http://localhost:4500/resto/loadBookings', {
+          username: localStorage["username_value"]
+        })
+        .then(response => {
+          const data = response.data;
+          let tag = "";
+          tag += '<table class="tablealign">';
+          tag += "<tr>";
+          tag += "<th>ID</th><th>Name</th><th>Subject</th><th>Status</th>";
+          tag += "</tr>";
+          data.forEach((element) => {
+            tag += "<tr>";
+            tag += "<td>" + element.id + "</td>";
+            tag += "<td>" + element.name + "</td>";
+            tag += "<td>" + element.subject + "</td>";
+            tag += "<td>" + element.status + "</td>";
+            tag += "</tr>";
+          });
+          tag += "</table>";
+          console.log(tag);
+          document.getElementById("search-result").innerHTML = tag;
+        })
+        .catch(error => console.error('On create student error', error));
+    }
+    document.querySelector('.img__btn').addEventListener('click', function () {
+      document.querySelector('.cont').classList.toggle('s--signup');
+    });
+  </script>
+</body>
+
+</html>

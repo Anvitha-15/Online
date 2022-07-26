@@ -1,0 +1,118 @@
+<html>
+
+<head>
+    <title>Job Website Template - Easy Tutorials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="places.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+    <!--  -->
+    <section id="header">
+        <div class="container">
+            <div class="user-box">
+                <!-- Search form -->
+                <form class="form-inline active-purple-4">
+                    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Enter Subject"
+                        aria-label="Search" id="admin_subject">
+        
+                    <i class="glyphicon glyphicon-search"></i><br><br>
+                    <button type="button" onclick="addAdminData(admin_subject.value)"
+                        class="submit btn btn-secondary">Add Data</button>
+                    <!-- <h2>the table is: </h2> -->
+                    <div class="tablealign" id="search-result"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        function search(search) {
+            axios.post('http://localhost:4500/resto/search', {
+                    search: search
+                })
+                .then(response => {
+                    const data = response.data;
+                    let tag = "";
+                    tag += '<table class="tablealign">';
+                    tag += "<tr>";
+                    tag += "<th>ID</th><th>Name</th><th>Area</th><th>Services</th>";
+                    tag += "</tr>";
+                    let i = 0;
+                    data.forEach((element) => {
+                        tag += "<tr>";
+                        tag += "<td>" + element.id + "</td>";
+                        tag += "<td>" + element.name + "</td>";
+                        tag += "<td>" + element.area + "</td>";
+                        tag += "<td>" + element.services + "</td>";
+                        tag += "<td>";
+                        tag +=
+                            `<button type="button" onclick="book('${element.id}', '${element.name}','${element.area}', '${element.services}', '${localStorage["username_value"]}')" class="submit">BOOK</button>`;
+                        tag += "</td>";
+                        tag += "</tr>";
+                        i += 1;
+                    });
+                    tag += "</table>";
+                    console.log(tag);
+                    document.getElementById("search-result").innerHTML = tag;
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+
+        function addAdminData(subject) {
+            axios.post('http://localhost:4500/resto/addAdminData', {
+                    name: localStorage["adminname_value"],
+                    subject : subject
+                    
+                })
+                .then(response => {
+                    const data = response.data;
+                    if (data === "success") {
+                        alert('Data successfully stored!');
+                    } else {
+                        alert("Failure in storing data");
+                    }
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+
+        function loadBookings() {
+            axios.post('http://localhost:4500/resto/loadBookings', {
+                    username: localStorage["username_value"]
+                })
+                .then(response => {
+                    const data = response.data;
+                    let tag = "";
+                    tag += "<table>";
+                    tag += "<tr>";
+                    tag += "<th>ID</th><th>Name</th><th>Area</th><th>Services</th><th>Status</th>";
+                    tag += "</tr>";
+                    data.forEach((element) => {
+                        tag += "<tr>";
+                        tag += "<td>" + element.id + "</td>";
+                        tag += "<td>" + element.name + "</td>";
+                        tag += "<td>" + element.area + "</td>";
+                        tag += "<td>" + element.services + "</td>";
+                        tag += "<td>" + element.status + "</td>";
+                        tag += "</tr>";
+                    });
+                    tag += "</table>";
+                    console.log(tag);
+                    document.getElementById("search-result").innerHTML = tag;
+                })
+                .catch(error => console.error('On create student error', error));
+        }
+        document.querySelector('.img__btn').addEventListener('click', function () {
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+    </script>
+</body>
+
+</html>
