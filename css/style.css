@@ -1,0 +1,294 @@
+#container {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item,
+.navbar-brand {
+    font-size: 125%;
+}
+
+#xheight {
+    max-height: 750px
+}
+
+#yheight {
+    max-height: 480px
+}
+
+#aboutus {
+    background-color: #ffffff;
+}
+
+.hr-width {
+    max-width: 150px;
+}
+
+
+
+.tablealign,
+tr:nth-child(even) {
+    background-color: rgba(9, 0, 0, 0.553)
+}
+
+/* .tablealign,
+th {
+    background-color: #10A5AB;
+    color: rgba(9, 0, 0, 0.553);
+} */
+
+.tablealign,
+td,
+th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.tablealign {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablealign,
+th,
+td {
+    text-align: left;
+    padding: 15px;
+}
+
+.tablealign {
+    color: #F5F5F5 !important;
+    size: 200px !important;
+    ;
+}
+
+/*---------------Header CSS---------------*/
+#header {
+    height: 100vh;
+    /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(1, 1, 1, 0.6)), url(images/.jpg); */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.user-box {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+
+
+.user-box h1 {
+    color: #fff;
+    font-weight: bold;
+    margin: 15px;
+    letter-spacing: 7px;
+}
+
+.user-box p {
+    color: #fff;
+}
+
+/* search bar */
+
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #4dd0e1;
+    box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+
+
+.para {
+    color: #10A5AB;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    font-family: "PT Serif";
+}
+
+.para1 {
+    color: #777777;
+    font-size: 100%;
+    text-align: left;
+    line-height: 181%;
+}
+
+.para2 {
+    color: #777777;
+    font-size: 100%;
+    vertical-align: baseline;
+    text-align: left;
+    line-height: 181%;
+    font-family: "PT Serif";
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+    float: left;
+}
+
+.featureicon {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+}
+
+.tick {
+    height: 10px;
+    width: 10px;
+}
+
+.fa-check {
+    color: #10A5AB;
+}
+
+.border {
+    border: 5px solid black;
+}
+
+#bookheader {
+    background-color: rgb(245, 245, 245);
+    padding: 45px 0 45px 0;
+}
+
+.booking-button {
+    background-color: #10A5AB;
+    color: white;
+    cursor: pointer;
+}
+
+h3 {
+    display: inline-block;
+}
+
+.bradius {
+    border-radius: 999px;
+    padding: 16px 38px 16px 38px;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: "Lato";
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("../images/book4.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#process {
+    color: white;
+}
+
+#hr {
+    height: 1px;
+    border: none;
+    color: #fff;
+    background-color: #fff;
+    width: 13%;
+}
+
+#picons {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.p1 {
+    display: inline-block;
+}
+
+.navbar-light .navbar-toggler {
+    background-color: white;
+}
+
+.nav-item,
+.navbar-brand {
+    font-weight: 700;
+    color: white !important;
+}
+
+.scrolled {
+    background-color: #fff !important;
+    transition: background-color 200ms linear;
+    color: black !important;
+}
+
+#grey {
+    background-color: #F5F5F5;
+}
+
+#nopadding {
+    padding: 0;
+}
+
+h5 {
+    display: block;
+    letter-spacing: 2px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+h4 {
+    display: block;
+    letter-spacing: 1.8px;
+    font-size: 200%;
+    font-weight: 700;
+}
+
+#footer {
+    background-color: #222222;
+}
+
+.f {
+    color: white;
+}
+
+.para3 {
+    color: #A8B1B6;
+}
+
+.footer-hr {
+    width: 25%;
+    background-color: white;
+}
+
+.img {
+    height: 100%;
+}
+
+.package:hover {
+    background-color: #eff1f0f5;
+    cursor: pointer;
+}
+
+.hcolor {
+    color: #10A5AB;
+    font-weight: 700;
+    font-size: 300%;
+}
+
+.para4 {
+    font-size: 100%;
+    line-height: 181%;
+}
+
+#prices {
+    display: none;
+}
+
+#form {
+    display: none;
+}

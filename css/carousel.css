@@ -1,0 +1,63 @@
+.carousel-fade .carousel-item {
+  display: block;
+  position: relative;
+  opacity: 0;
+  transition: opacity .75s ease-in-out;
+}
+
+.row {
+		width: 100%;
+}
+
+.carousel-fade .carousel-item.active {
+  opacity: 1;
+  display: block;
+}
+.row {
+  width: 100%;
+}
+.carousel {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: lightskyblue;
+}
+.carousel-inner {
+  background-color: rgb(85, 79, 80);
+  height: 100%;
+}
+.carousel-item {
+  max-height: 750px;
+  opacity .5;
+}
+a.carousel-control-next:link, a.carousel-control-prev:link {
+  background-color: transparent;
+  text-decoration: none;
+  opacity: .5;
+  width: 80px;
+  height: 200px;
+  top: 40%;
+}
+a.carousel-control-next:hover, a.carousel-control-prev:hover  {
+  text-decoration: none;
+  opacity: 1;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  position:relative;
+  width: 25px;
+  height: 25px;
+  
+}    
+.carousel-control-next-icon:before {
+  top:0;
+  left:-5px;
+  padding-right:10px;
+ }
+.carousel-control-prev-icon:before {
+  top:0;
+  left:-5px;
+  padding-right:10px;
+}
+.sidebar {
+  background-color: #e1e1e1;
+}
